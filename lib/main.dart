@@ -86,3 +86,37 @@ class _HeaderBackground extends StatelessWidget {
     );
   }
 }
+
+class _HeaderCustomPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white.withOpacity(0.4)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 6;
+
+    canvas.drawCircle(Offset(size.width * 0.25, size.height * 0.4), 12, paint);
+    canvas.drawCircle(Offset(size.width * 0.75, size.height * 0.2), 12, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
+class _HeaderCircles extends StatelessWidget {
+  final double height;
+
+  const _HeaderCircles({Key? key, required this.height}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _HeaderCustomPainter(),
+      child: Container(
+        width: double.infinity,
+        height: height,
+      ),
+    );
+  }
+}
